@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-extractor/corpus-chunk.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "source_chunk_id", "document_id", "document", "document_sha256",
+    "source_type", "module", "physical_page", "page_label", "heading_path", "chunk_ordinal",
+    "previous_chunk_id", "next_chunk_id", "text", "extraction_method"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "source_chunk_id": {"type": "string", "pattern": "^source-chunk:[0-9a-f]{64}$"},
+    "document_id": {"type": "string", "pattern": "^document:[0-9a-f]{64}$"},
+    "document": {"type": "string", "minLength": 1},
+    "document_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_type": {"type": "string", "minLength": 1},
+    "module": {"type": "string", "minLength": 1},
+    "physical_page": {"type": "integer", "minimum": 1},
+    "page_label": {"type": "string", "minLength": 1},
+    "heading_path": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "chunk_ordinal": {"type": "integer", "minimum": 0},
+    "previous_chunk_id": {"type": ["string", "null"], "pattern": "^source-chunk:[0-9a-f]{64}$"},
+    "next_chunk_id": {"type": ["string", "null"], "pattern": "^source-chunk:[0-9a-f]{64}$"},
+    "text": {"type": "string", "minLength": 1},
+    "extraction_method": {"const": "page-text"}
+  }
+}

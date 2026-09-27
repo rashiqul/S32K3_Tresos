@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-hardware/hardware-extract.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool_version", "state", "profile", "documents", "citations", "entities", "relationships", "assertions", "warnings", "failures"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "tool_version": {"type": "string", "minLength": 1},
+    "state": {"enum": ["complete", "failed"]},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "version"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "documents": {"type": "object", "additionalProperties": {"$ref": "#/$defs/document"}},
+    "citations": {"type": "array", "items": {"$ref": "#/$defs/citation"}},
+    "entities": {"type": "object", "additionalProperties": {"$ref": "#/$defs/entity"}},
+    "relationships": {"type": "array", "items": {"$ref": "#/$defs/relationship"}},
+    "assertions": {"type": "array", "items": {"$ref": "#/$defs/assertion"}},
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "failures": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "document": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document", "sha256", "page_count", "source_type"],
+      "properties": {
+        "document": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "page_count": {"type": "integer", "minimum": 1},
+        "source_type": {"type": "string", "minLength": 1}
+      }
+    },
+    "citation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "document", "physical_page", "page_label", "section", "text_anchor", "required_terms", "extraction_method", "extraction_confidence"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "document": {"type": "string", "minLength": 1},
+        "physical_page": {"type": "integer", "minimum": 1},
+        "page_label": {"type": "string", "minLength": 1},
+        "section": {"type": "string", "minLength": 1},
+        "text_anchor": {"type": "string", "minLength": 1},
+        "required_terms": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "extraction_method": {"const": "page-text"},
+        "extraction_confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "entity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label", "identity", "properties"],
+      "properties": {
+        "label": {"enum": ["Peripheral", "Register", "RegisterField", "Constraint", "Device", "GeneratedSymbol"]},
+        "identity": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "properties": {"type": "object"}
+      }
+    },
+    "relationship": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "from", "to"],
+      "properties": {
+        "type": {"enum": ["BELONGS_TO"]},
+        "from": {"type": "string", "minLength": 1},
+        "to": {"type": "string", "minLength": 1}
+      }
+    },
+    "endpoint": {
+      "type": "object", "minProperties": 1, "maxProperties": 1,
+      "properties": {
+        "entity": {"type": "string", "minLength": 1},
+        "document": {"type": "string", "minLength": 1},
+        "definition": {
+          "type": "object", "additionalProperties": false,
+          "required": ["module", "section_number", "identifier"],
+          "properties": {
+            "module": {"type": "string", "minLength": 1},
+            "section_number": {"type": "string", "minLength": 1},
+            "identifier": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "assertion": {
+      "type": "object", "additionalProperties": false,
+      "required": ["subject", "predicate", "object", "citations", "assertion_status", "extraction_confidence"],
+      "properties": {
+        "subject": {"$ref": "#/$defs/endpoint"},
+        "predicate": {"type": "string", "minLength": 1},
+        "object": {"$ref": "#/$defs/endpoint"},
+        "citations": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+        "assertion_status": {"enum": ["verified", "inferred", "unresolved", "rejected"]},
+        "extraction_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "rationale": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [{"if": {"properties": {"state": {"const": "complete"}}}, "then": {"properties": {"failures": {"maxItems": 0}}}}]
+}

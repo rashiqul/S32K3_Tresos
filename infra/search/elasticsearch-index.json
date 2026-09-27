@@ -1,0 +1,33 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+      "schema_version": {"type": "keyword"},
+      "dataset_id": {"type": "keyword"},
+      "chunk_id": {"type": "keyword"},
+      "citation_id": {"type": "keyword"},
+      "source_chunk_id": {"type": "keyword"},
+      "previous_chunk_id": {"type": "keyword"},
+      "next_chunk_id": {"type": "keyword"},
+      "content_type": {"type": "keyword"},
+      "document_id": {"type": "keyword"},
+      "document_path": {"type": "keyword"},
+      "source_type": {"type": "keyword"},
+      "module_ids": {"type": "keyword"},
+      "peripheral_ids": {"type": "keyword"},
+      "term_ids": {"type": "keyword"},
+      "device_ids": {"type": "keyword"},
+      "physical_page": {"type": "integer"},
+      "page_label": {"type": "keyword"},
+      "heading_path": {"type": "text", "fields": {"exact": {"type": "keyword"}}},
+      "text": {"type": "text", "analyzer": "english", "fields": {"exact": {"type": "keyword", "ignore_above": 8191}}},
+      "document_sha256": {"type": "keyword"},
+      "extraction_method": {"type": "keyword"},
+      "chunker_version": {"type": "keyword"}
+    }
+  }
+}

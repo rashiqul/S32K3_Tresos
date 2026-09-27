@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "s32k358-mcal-reference-tools"
+version = "0.1.0"
+description = "Local MCAL graph/search extraction and read-only Tresos advisory tools"
+authors = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.15"
+pypdf = ">=5,<7"
+jsonschema = ">=4.23,<5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8,<9"
+ruff = ">=0.11,<1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = ".cache/pytest"
+
+[tool.ruff]
+cache-dir = ".cache/ruff"
+line-length = 100
+target-version = "py311"
+
+[build-system]
+requires = ["poetry-core>=2.0,<3.0"]
+build-backend = "poetry.core.masonry.api"

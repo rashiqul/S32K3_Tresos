@@ -1,0 +1,42 @@
+{
+  "profile_version": "2.0.0",
+  "documents": {
+    "rtd_um": {"path": "docs/RTD_MCU_UM.pdf", "source_type": "RTD-user-manual"},
+    "reference_manual": {"path": "docs/S32K3XXRM.pdf", "source_type": "reference-manual"},
+    "datasheet": {"path": "docs/S32K3xx_Datasheet.pdf", "source_type": "datasheet"}
+  },
+  "citations": {
+    "global_control": {"document": "rtd_um", "physical_page": 69, "page_label": "57", "section": "4.1.32 Parameter McuFxoscUnderMcuControl", "text_anchor": "MCU_FXOSC_UNDER_MCU_CONTROL", "required_terms": ["McuFxoscUnderMcuControl", "MCU_FXOSC_UNDER_MCU_CONTROL"]},
+    "crystal_frequency": {"document": "rtd_um", "physical_page": 86, "page_label": "74", "section": "4.1.71 Parameter McuCrystalFrequencyHz", "text_anchor": "Crystal Frequency or External Reference Frequency [Hz].", "required_terms": ["McuCrystalFrequencyHz", "External Reference Frequency", "8000000.0", "4.0E7"]},
+    "fxosc_control": {"document": "rtd_um", "physical_page": 98, "page_label": "86", "section": "4.1.97 Parameter McuFxoscUnderMcuControl", "text_anchor": "the MCU driver will not write the corresponding registers", "required_terms": ["McuFxoscUnderMcuControl", "will not write the corresponding registers"]},
+    "power_down": {"document": "rtd_um", "physical_page": 98, "page_label": "86", "section": "4.1.98 Parameter McuFxoscPowerDownCtr", "text_anchor": "Configure the FXOSC_CTRL[OSCON] field.", "required_terms": ["McuFxoscPowerDownCtr", "FXOSC_CTRL[OSCON]"]},
+    "register_map": {"document": "reference_manual", "physical_page": 1146, "page_label": "1146", "section": "28.4 Memory map/register definition", "text_anchor": "FXOSC Control Register (CTRL)", "required_terms": ["FXOSC Control Register", "CTRL", "Offset", "0h"]},
+    "oscon_field": {"document": "reference_manual", "physical_page": 1149, "page_label": "1149", "section": "28.6.2 FXOSC Control Register (CTRL)", "text_anchor": "OSCON Crystal oscillator power-down control", "required_terms": ["OSCON", "Crystal oscillator power-down control", "Enables or disables FXOSC"]},
+    "crystal_limit": {"document": "datasheet", "physical_page": 99, "page_label": "99", "section": "11.4 FXOSC, Table 45", "text_anchor": "FXOSC_CLK output clock frequency in crystal mode: 8 to 40 MHz", "required_terms": ["FXOSC_CLK", "crystal mode", "8", "40", "MHz"]},
+    "s32k358_device": {"document": "datasheet", "physical_page": 101, "page_label": "101", "section": "11.4 FXOSC", "text_anchor": "S32K358", "required_terms": ["FXOSC", "S32K358"]}
+  },
+  "entities": {
+    "fxosc": {"label": "Peripheral", "identity": ["S32K3XX", "FXOSC"], "properties": {"name": "FXOSC", "device_family": "S32K3XX"}},
+    "ctrl": {"label": "Register", "identity": ["S32K3XX", "FXOSC", "CTRL", "0x0"], "properties": {"name": "CTRL", "qualified_name": "FXOSC.CTRL", "offset": "0x0", "width": 32}},
+    "oscon": {"label": "RegisterField", "identity": ["register:ctrl", "OSCON", "0"], "properties": {"name": "OSCON", "qualified_name": "FXOSC.CTRL.OSCON", "bit_range": "0"}},
+    "frequency": {"label": "Constraint", "identity": ["S32K3XX", "FXOSC", "crystal-mode-frequency"], "properties": {"name": "FXOSC crystal-mode frequency", "minimum": 8000000, "maximum": 40000000, "unit": "Hz", "condition": "crystal-mode"}},
+    "family": {"label": "Device", "identity": ["S32K3XX"], "properties": {"canonical_name": "S32K3XX", "scope": "family"}},
+    "device": {"label": "Device", "identity": ["S32K358"], "properties": {"canonical_name": "S32K358", "scope": "derivative"}},
+    "symbol": {"label": "GeneratedSymbol", "identity": ["MCU_FXOSC_UNDER_MCU_CONTROL"], "properties": {"canonical_name": "MCU_FXOSC_UNDER_MCU_CONTROL"}}
+  },
+  "relationships": [
+    {"type": "BELONGS_TO", "from": "ctrl", "to": "fxosc"},
+    {"type": "BELONGS_TO", "from": "oscon", "to": "ctrl"}
+  ],
+  "assertions": [
+    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.32", "identifier": "McuFxoscUnderMcuControl"}}, "predicate": "GENERATES", "object": {"entity": "symbol"}, "citations": ["global_control"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.97", "identifier": "McuFxoscUnderMcuControl"}}, "predicate": "CONFIGURES", "object": {"entity": "fxosc"}, "citations": ["fxosc_control"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.98", "identifier": "McuFxoscPowerDownCtr"}}, "predicate": "MAPS_TO", "object": {"entity": "oscon"}, "citations": ["power_down", "oscon_field"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "ctrl"}, "predicate": "DOCUMENTED_BY", "object": {"document": "reference_manual"}, "citations": ["register_map"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "oscon"}, "predicate": "DOCUMENTED_BY", "object": {"document": "reference_manual"}, "citations": ["oscon_field"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "fxosc"}, "predicate": "CONSTRAINED_BY", "object": {"entity": "frequency"}, "citations": ["crystal_limit"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "frequency"}, "predicate": "APPLIES_TO", "object": {"entity": "family"}, "citations": ["crystal_limit"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "device"}, "predicate": "MEMBER_OF", "object": {"entity": "family"}, "citations": ["s32k358_device"], "assertion_status": "inferred", "extraction_confidence": 1.0, "rationale": "The datasheet names S32K358 in an FXOSC note, while the table is scoped to the S32K3xx datasheet family."},
+    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.71", "identifier": "McuCrystalFrequencyHz"}}, "predicate": "CONFIGURES", "object": {"entity": "fxosc"}, "citations": ["crystal_frequency", "crystal_limit"], "assertion_status": "inferred", "extraction_confidence": 0.9, "rationale": "The RTD parameter range matches the FXOSC crystal-mode range, but the parameter description does not name FXOSC."}
+  ]
+}

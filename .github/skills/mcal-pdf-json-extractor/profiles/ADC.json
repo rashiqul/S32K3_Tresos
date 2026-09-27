@@ -1,0 +1,18 @@
+{
+  "module": "ADC",
+  "um_configuration_sections": [
+    "^4 Configuration Parameters$"
+  ],
+  "im_topics": {
+    "exclusive-area": ["Exclusive areas?"],
+    "interrupt": ["ISR", "interrupt"],
+    "dependency": ["dependencies"],
+    "api": ["API Requirements"],
+    "callback": ["Callbacks?", "Notifications?"],
+    "memory": ["Memory allocation"],
+    "integration": ["Integration Steps"],
+    "user-mode": ["User Mode"],
+    "partition": ["MultiPartition"],
+    "hardware": ["Peripheral Hardware Requirements"]
+  }
+}

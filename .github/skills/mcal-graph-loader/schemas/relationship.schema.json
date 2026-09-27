@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-graph/relationship.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "stable_id",
+    "graph_id",
+    "type",
+    "from_id",
+    "to_id",
+    "properties"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dataset_id": {"type": "string", "pattern": "^dataset:[0-9a-f]{64}$"},
+    "stable_id": {"type": "string", "pattern": "^relationship:[0-9a-f]{64}$"},
+    "graph_id": {"type": "string", "pattern": "^graph:[0-9a-f]{64}$"},
+    "type": {"enum": ["BELONGS_TO", "HAS_CITATION"]},
+    "from_id": {"type": "string", "minLength": 1},
+    "to_id": {"type": "string", "minLength": 1},
+    "properties": {"type": "object"}
+  }
+}

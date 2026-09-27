@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-extractor/corpus-manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "tool_version", "state", "documents_found", "documents_extracted",
+    "chunks", "source_hashes", "warnings", "failures"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "tool_version": {"type": "string", "minLength": 1},
+    "state": {"enum": ["complete", "failed"]},
+    "documents_found": {"type": "integer", "minimum": 0},
+    "documents_extracted": {"type": "integer", "minimum": 0},
+    "chunks": {"type": "integer", "minimum": 0},
+    "source_hashes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "object"}},
+    "failures": {"type": "array", "items": {"type": "object"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "complete"}}},
+      "then": {"properties": {"failures": {"maxItems": 0}}}
+    }
+  ]
+}

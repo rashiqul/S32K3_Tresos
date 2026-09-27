@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-graph/assertion.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "stable_id",
+    "graph_id",
+    "subject_id",
+    "predicate",
+    "object_id",
+    "citation_ids",
+    "assertion_status",
+    "review_status",
+    "extraction_confidence",
+    "producer_version"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "dataset_id": {"type": "string", "pattern": "^dataset:[0-9a-f]{64}$"},
+    "stable_id": {"type": "string", "pattern": "^assertion:[0-9a-f]{64}$"},
+    "graph_id": {"type": "string", "pattern": "^graph:[0-9a-f]{64}$"},
+    "subject_id": {"type": "string", "minLength": 1},
+    "predicate": {
+      "enum": [
+        "DOCUMENTED_BY",
+        "USES_EXCLUSIVE_AREA",
+        "INSTANCE_OF",
+        "MAPS_TO",
+        "CONFIGURES",
+        "CONSTRAINED_BY",
+        "APPLIES_TO",
+        "MEMBER_OF",
+        "GENERATES",
+        "MENTIONS_HARDWARE_TERM",
+        "DEPENDS_ON",
+        "REQUIRES_ORDER",
+        "ALIAS_OF"
+      ]
+    },
+    "object_id": {"type": "string", "minLength": 1},
+    "citation_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^citation:[0-9a-f]{64}$"},
+      "uniqueItems": true
+    },
+    "assertion_status": {"enum": ["verified", "inferred", "unresolved", "rejected"]},
+    "review_status": {"enum": ["unreviewed", "accepted", "rejected"]},
+    "extraction_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "producer_version": {"type": "string", "minLength": 1},
+    "rationale": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {
+        "anyOf": [
+          {"properties": {"assertion_status": {"const": "verified"}}},
+          {"properties": {"review_status": {"const": "accepted"}}}
+        ]
+      },
+      "then": {"properties": {"citation_ids": {"minItems": 1}}}
+    }
+  ]
+}

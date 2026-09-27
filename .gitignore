@@ -1,0 +1,61 @@
+# Local Python environments and caches
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Generated Tresos and build output
+output/
+Debug/
+Release/
+build/
+dist/
+
+# Vendor manuals and locally supplied documents
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# Generated datasets, databases, and large transport archives
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+
+# Secrets and local service configuration
+**/.env
+**/.env.*
+!**/.env.example
+*.key
+*.pem
+
+# Eclipse workspace state; project-level Tresos metadata remains tracked
+.metadata/
+
+# Keep shared tasks, but not developer-specific VS Code state
+.vscode/*
+!.vscode/tasks.json
+
+# Logs, temporary files, and operating-system metadata
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini

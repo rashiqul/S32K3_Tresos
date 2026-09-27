@@ -1,0 +1,25 @@
+* text=auto
+
+# Preserve Tresos/Eclipse project files in their current Windows-oriented format.
+*.xdm text eol=crlf
+.project text eol=crlf
+*.tdb binary
+
+# Keep development sources consistent across platforms.
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+justfile text eol=lf
+
+# Vendor documents are local-only, but classify accidental additions as binary.
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary

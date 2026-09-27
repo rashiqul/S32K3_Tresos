@@ -1,0 +1,76 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "MCAL Skill: Verify",
+			"dependsOn": [
+				"MCAL Skill: Test",
+				"MCAL Skill: Lint"
+			],
+			"dependsOrder": "sequence",
+			"group": "test",
+			"problemMatcher": []
+		},
+		{
+			"label": "MCAL Skill: Test",
+			"type": "shell",
+			"command": ".\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-m",
+				"pytest",
+				"-q"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "MCAL Skill: Lint",
+			"type": "shell",
+			"command": ".\\.venv\\Scripts\\python.exe",
+			"args": [
+				"-m",
+				"ruff",
+				"check",
+				".github/skills/mcal-reference-s32k358/scripts",
+				".github/skills/mcal-pdf-json-extractor/scripts",
+				".github/skills/mcal-hardware-pdf-extractor/scripts",
+				".github/skills/mcal-graph-loader/scripts",
+				"tests"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "MCAL PDF Extractor: Extract All",
+			"type": "shell",
+			"command": "just",
+			"args": [
+				"extract-all"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "MCAL Graph Loader: Stage Dataset",
+			"type": "shell",
+			"command": ".\\.venv\\Scripts\\python.exe",
+			"args": [
+				".github/skills/mcal-graph-loader/scripts/build_dataset.py",
+				"--json"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "MCAL Graph Loader: Activate Dataset",
+			"type": "shell",
+			"command": ".\\.venv\\Scripts\\python.exe",
+			"args": [
+				".github/skills/mcal-graph-loader/scripts/manage_stores.py",
+				"all"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nxp.local/mcal-extractor/corpus-document.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "document_id", "path", "sha256", "page_count", "source_type", "module"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "document_id": {"type": "string", "pattern": "^document:[0-9a-f]{64}$"},
+    "path": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "page_count": {"type": "integer", "minimum": 1},
+    "source_type": {"type": "string", "minLength": 1},
+    "module": {"type": "string", "minLength": 1}
+  }
+}
