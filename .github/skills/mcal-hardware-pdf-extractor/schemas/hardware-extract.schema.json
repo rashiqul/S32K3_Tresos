@@ -56,7 +56,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["label", "identity", "properties"],
       "properties": {
-        "label": {"enum": ["Peripheral", "Register", "RegisterField", "Constraint", "Device", "GeneratedSymbol"]},
+        "label": {"enum": ["Peripheral", "Register", "RegisterField", "Constraint", "Device", "GeneratedSymbol", "HardwarePlatform", "HardwareComponent", "Connector", "Signal", "ClockSource"]},
         "identity": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
         "properties": {"type": "object"}
       }

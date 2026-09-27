@@ -61,5 +61,16 @@ def test_normalize_hardware_artifact_preserves_fxosc_stable_ids() -> None:
     oscon_id = stable_id("register-field", ctrl_id, "OSCON", "0")
     assert any(node["stable_id"] == ctrl_id for node in nodes)
     assert any(node["stable_id"] == oscon_id for node in nodes)
-    assert len(relationships) == 10
-    assert len(assertions) == 9
+    assert len(relationships) == 17
+    assert len(assertions) == 23
+
+
+def test_normalize_hardware_artifact_includes_target_platform() -> None:
+    import hardware_extract
+
+    profile = hardware_extract.load_profile(hardware_extract.DEFAULT_PROFILE)
+
+    assert profile["entities"]["target_platform"]["label"] == "HardwarePlatform"
+    assert profile["entities"]["target_platform"]["properties"]["canonical_name"] == (
+        "S32K3X8EVB-Q289"
+    )

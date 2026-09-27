@@ -37,7 +37,11 @@
         "MENTIONS_HARDWARE_TERM",
         "DEPENDS_ON",
         "REQUIRES_ORDER",
-        "ALIAS_OF"
+        "ALIAS_OF",
+        "POPULATES",
+        "IMPLEMENTS",
+        "EXPOSES",
+        "USES_SIGNAL"
       ]
     },
     "object_id": {"type": "string", "minLength": 1},

@@ -46,6 +46,11 @@ The ingestion implementation uses these primary labels:
 | `Peripheral` | `peripheral_id` | Hardware blocks such as FlexCAN, SIUL2, and LPUART |
 | `Register` | `register_id` | Reference-manual registers and optional fields |
 | `Device` | `device_id` | Family or derivative applicability |
+| `HardwarePlatform` | `hardware-platform_id` | Declared board/revision reference platform |
+| `HardwareComponent` | `hardware-component_id` | Board-populated MCU, transceiver, or power component |
+| `Connector` | `connector_id` | Board connector and documented pin mapping |
+| `Signal` | `signal_id` | Board-routed MCU or peripheral signal |
+| `ClockSource` | `clock-source_id` | Board clock source with purpose and frequency |
 | `Document` | `document_id` | RM, datasheet, UM, IM, board manual, or application note |
 | `Citation` | `citation_id` | A source location with page and extraction provenance |
 
@@ -63,13 +68,14 @@ Every assertion carries an `assertion_status` of `verified`, `inferred`, `unreso
 merely both endpoint names. Inferred assertions record a rationale and remain out of authoritative
 query expansion until reviewed.
 
-## MCU/FXOSC Evidence Slice
+## MCU/FXOSC And Target-Platform Evidence
 
 The production profile is
 `.github/skills/mcal-hardware-pdf-extractor/profiles/mcu-fxosc.json`. The independent hardware
 extractor verifies local RTD, reference-manual, and datasheet anchors and emits neutral JSON. The
 graph loader turns that artifact into the FXOSC peripheral, `CTRL` register, `OSCON` field,
-crystal-mode constraint, and their evidence-bearing assertions.
+crystal-mode constraint, Q289 platform topology, and their evidence-bearing assertions. The
+platform nodes distinguish declared reference-board intent from physical-board confirmation.
 
 The saved global FXOSC-control value is true while `McuClockSettingConfig` is empty. The documented
 any-per-setting derivation cannot be demonstrated from saved XDM alone, so this remains unresolved

@@ -9,14 +9,18 @@
 - Configuration path: `config`.
 - Generation path: `output`.
 - Configuration format: XDM.
+- RTD package: `SW32K3_S32M27x_RTD_R23-11_7.0.1`.
 - RTD software version recorded by the enabled modules: `7.0.1 D2602`.
+- The package name and AUTOSAR release are corroborated by the RTD UM/IM title and revision
+	pages; the project-specific build discriminator `D2602` is recorded in
+	`.prefs/pref_general.xdm`.
 - AUTOSAR release fields in module published information: `4.9.0`.
 
-The project name suggests S32K358 EVB intent, but neither the name nor the supplied Q289 board
-manual proves the fitted derivative, package, board revision, or assembly. `ResourceSubderivative`
-currently records `s32k389_mapbga437` with `@DEF` provenance and is not confirmed application
-intent. Apply the mandatory gate in [target-context](./target-context.md) before hardware-dependent
-recommendations.
+The declared reference platform is S32K3X8EVB-Q289 board 54870 revision C with an S32K358 in
+MAPBGA289. `ResourceSubderivative` records `s32k358_mapbga289`, consistent with that intent. This
+declaration does not prove the revision or population of the physical board connected to the
+developer workstation. Apply the mandatory gate in [target-context](./target-context.md) before
+hardware-dependent recommendations.
 
 ## Configured Modules
 

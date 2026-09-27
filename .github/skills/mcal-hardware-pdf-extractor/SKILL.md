@@ -8,15 +8,15 @@ disable-model-invocation: false
 
 # MCAL Hardware PDF Extractor
 
-Extract provenance-bearing hardware facts from local reference manuals, datasheets, and board
-manuals. This skill emits validated JSON only; it never connects to or modifies Neo4j,
+Extract provenance-bearing hardware facts and target-platform topology from local reference
+manuals, datasheets, and board manuals. This skill emits validated JSON only; it never connects to or modifies Neo4j,
 Elasticsearch, Tresos XDM, preferences, or generated output.
 
 ## Workflow
 
 1. Select a committed hardware profile under `profiles/`.
 2. Hash each declared source PDF and validate every required text anchor on its physical page.
-3. Emit source-neutral documents, citations, entities, topology, and assertion candidates.
+3. Emit source-neutral documents, citations, entities, target-platform topology, and assertion candidates.
 4. Preserve assertion status, extraction confidence, rationale, device scope, units, and page labels.
 5. Write the complete artifact atomically under `.cache/mcal-hardware-pdf-extractor/`.
 6. Let `mcal-graph-loader` resolve RTD definition selectors and load the resulting immutable dataset.

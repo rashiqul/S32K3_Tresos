@@ -15,7 +15,9 @@ def test_target_context_blocks_unconfirmed_hardware_identity() -> None:
     )
 
     assert "target-context" in skill
-    assert "s32k389_mapbga437" in target_context
+    assert "s32k358_mapbga289" in target_context
+    assert "Confirm the PCB label and U80 marking" in target_context
+    assert "not the MCU FXOSC" in target_context
     assert "McuClockSettingConfig" in target_context
     assert "CAN transceiver" in target_context
     assert "NVM" in target_context

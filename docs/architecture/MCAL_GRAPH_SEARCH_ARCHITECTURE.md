@@ -210,13 +210,13 @@ If Neo4j activation fails after the alias swap, the implementation compensates b
 previous Elasticsearch alias. There is no explicit operator rollback command yet, and the two
 stores cannot share one database transaction.
 
-## MCU/FXOSC Evidence Slice
+## MCU/FXOSC And Q289 Platform Evidence
 
 The production profile is
 `.github/skills/mcal-hardware-pdf-extractor/profiles/mcu-fxosc.json`. The hardware extractor verifies
-eight text anchors in the RTD MCU user manual, S32K3 reference manual, and S32K3xx datasheet before
-emitting neutral hardware facts and mapping candidates. The graph loader resolves those candidates
-against exact RTD definition selectors.
+15 text anchors in the RTD MCU user manual, S32K3 reference manual, S32K3xx datasheet, and Q289
+board manual before emitting neutral hardware facts and mapping candidates. The graph loader
+resolves those candidates against exact RTD definition selectors.
 
 The slice includes:
 
@@ -227,6 +227,9 @@ The slice includes:
 - An inferred `McuCrystalFrequencyHz` to FXOSC link because the RTD parameter description does not
   explicitly name the peripheral.
 - Family and derivative applicability kept distinct.
+- `HardwarePlatform(S32K3X8EVB-Q289)` with cited MCU population, CAN0 and LIN1 components,
+  connectors, routed signals, and Ethernet TXCLK.
+- A distinct `ClockSource` for the 50 MHz Ethernet TXCLK so it cannot be mistaken for MCU FXOSC.
 
 One project observation remains unresolved: the saved global FXOSC-control value is true while
 `McuClockSettingConfig` is empty. The documented any-per-setting derivation therefore cannot be

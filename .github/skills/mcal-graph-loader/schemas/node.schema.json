@@ -27,6 +27,11 @@
         "RegisterField",
         "Constraint",
         "Device",
+        "HardwarePlatform",
+        "HardwareComponent",
+        "Connector",
+        "Signal",
+        "ClockSource",
         "Term",
         "GeneratedSymbol",
         "Assertion"

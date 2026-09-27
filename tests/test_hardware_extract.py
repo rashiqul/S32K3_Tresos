@@ -40,8 +40,8 @@ def test_extract_profile_validates_anchors_and_emits_neutral_facts(monkeypatch) 
     artifact = hardware_extract.extract_profile()
 
     assert artifact["state"] == "complete"
-    assert len(artifact["documents"]) == 3
-    assert len(artifact["citations"]) == 8
-    assert len(artifact["entities"]) == 7
-    assert len(artifact["assertions"]) == 9
+    assert len(artifact["documents"]) == 4
+    assert len(artifact["citations"]) == 15
+    assert len(artifact["entities"]) == 20
+    assert len(artifact["assertions"]) == 23
     assert "dataset_id" not in artifact

@@ -22,6 +22,11 @@ LABEL_PREFIXES = {
     "Constraint": "constraint",
     "Device": "device",
     "GeneratedSymbol": "generated-symbol",
+    "HardwarePlatform": "hardware-platform",
+    "HardwareComponent": "hardware-component",
+    "Connector": "connector",
+    "Signal": "signal",
+    "ClockSource": "clock-source",
 }
 
 

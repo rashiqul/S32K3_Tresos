@@ -147,9 +147,11 @@ overrides, while other modules use shared RTD section conventions.
 Figures and image content are ignored. Extraction warnings, fuzzy or unresolved relationships, and
 table-layout anomalies require confirmation against the cited PDF page.
 
-The separate `/mcal-hardware-pdf-extractor` skill validates reference-manual and datasheet anchors
-and emits database-neutral hardware entities, constraints, topology, and mapping candidates. It
-never connects to Neo4j or Elasticsearch; only `mcal-graph-loader` loads its validated artifact.
+The separate `/mcal-hardware-pdf-extractor` skill validates reference-manual, datasheet, and board
+manual anchors and emits database-neutral hardware entities, constraints, target-platform topology,
+and mapping candidates. It never connects to Neo4j or Elasticsearch; only `mcal-graph-loader` loads
+its validated artifact. The declared platform and unresolved oscillator evidence are recorded in
+[TARGET_HARDWARE_PLATFORM.md](docs/architecture/TARGET_HARDWARE_PLATFORM.md).
 
 ## Immutable Graph Dataset
 
@@ -220,17 +222,17 @@ The first advisory MCAL reference workflow is implemented and validated:
 - `S32K3xx_Datasheet.pdf` contributes 170 datasheet pages.
 - The XDM inspector is read-only and resolves parameter/container hierarchy and enable metadata.
 - Generated extractor, dataset, Pytest, and Ruff data is consolidated beneath the root `.cache/` directory rather than mixed into the disposable `.venv` environment.
-- The automated suite contains 51 passing tests, with Ruff reporting no findings.
+- The automated suite contains 52 passing tests, with Ruff reporting no findings.
 - `just configure` installs the supported environment, and `just clean` preserves pipeline data during routine cleanup.
 - A localhost-only Docker Compose stack runs the active Neo4j graph and complete Elasticsearch PDF corpus used by the advisory query adapter.
 - Independent UM and IM parsers cover all 36 discovered RTD manual pairs and validate their output with committed JSON Schemas.
 - Structured extraction captures configuration parameter/container records, integration topics and identifiers, exclusive areas, source provenance, confidence, and typed relationships.
 - ADC and FlexCAN pilot extractions validated the shared parser against differing manual structures.
 - The Docker search workflow uses completed, immutable JSON datasets as the common source for Neo4j and Elasticsearch.
-- The independent graph-loader skill stages all 36 RTD definition modules, 11 current XDM files, and a production MCU/FXOSC evidence slice into deterministic immutable datasets.
-- The active dataset `dataset:1cc76962f28df7770c464f2009b74079aff8ce43c084a5f8321412346ceb6f74` contains 22,548 nodes, 26,814 structural relationships, 6,583 assertions, and 16,549 Elasticsearch chunks.
+- The independent graph-loader skill stages all 36 RTD definition modules, 11 current XDM files, and a production MCU/FXOSC plus Q289 target-platform evidence slice into deterministic immutable datasets.
+- The active dataset `dataset:d2b817d52eff606b5d84067b48a47252c77fbcd211ef0b9b4d68615c1907e90e` contains 22,568 nodes, 26,821 structural relationships, 6,597 assertions, and 16,556 Elasticsearch chunks.
 - Neo4j and Elasticsearch loading is idempotent and dataset-scoped. Activation verifies both stores, swaps the `mcal-reference-chunks` alias, marks the matching Neo4j dataset active, and writes the local pointer last.
-- The independent hardware extractor validates eight local PDF evidence anchors and emits the MCU/FXOSC artifact; the graph loader records the verified `McuFxoscPowerDownCtr` to `FXOSC.CTRL.OSCON` mapping plus explicitly inferred family/applicability links.
+- The independent hardware extractor validates 15 local PDF evidence anchors and emits the MCU/FXOSC and Q289 platform artifact. The graph includes the board, MCU population, CAN0 and LIN1 transceivers, connectors, routed signals, and the Ethernet-only 50 MHz TXCLK source.
 - Four migration queries matched or improved on the retired SQLite results for exact parameters, reference-manual register fields, and datasheet limits.
 
 ### Current Limitations
@@ -241,10 +243,12 @@ The first advisory MCAL reference workflow is implemented and validated:
 - Physical PDF pages and embedded page labels are retained, but a result still requires visual confirmation when extraction and page layout disagree.
 - S32K3 family-level statements do not prove that a feature applies to the exact S32K358 derivative. Applicability must be checked against the datasheet and project derivative evidence.
 - Current XDM values represent saved project state, not vendor defaults or validated application intent.
-- Exact derivative/package and physical-board identity remain unresolved: the project name suggests
-	S32K358 EVB, Resource currently contains the default-like `s32k389_mapbga437`, and the supplied
-	board manual describes Q289 hardware. Hardware-dependent advice must remain conditional until
-	those facts and fitted components are reconciled.
+- Project intent is reconciled as S32K358 MAPBGA289 on the Q289 revision C reference platform, and
+	Resource records `s32k358_mapbga289`. The physical PCB revision, U80 marking, fitted components,
+	and jumper population still require inspection before hardware-dependent release decisions.
+- The Q289 board manual does not identify the MCU FXOSC component or frequency. Its explicit 50 MHz
+	oscillator is Ethernet TXCLK; the saved 16 MHz MCU value remains unconfirmed until checked against
+	the schematic/BOM, component marking, or measurement.
 - The workflow is advisory-only. It does not edit XDM, automate the Tresos GUI, generate code, certify functional safety, or perform hardware-in-the-loop validation.
 - Corpus extraction currently processes every PDF in one run and stores page text in generated JSONL before immutable staging.
 - Structured extraction relies on embedded PDF outlines and text. It does not OCR figures or reconstruct complex visual table geometry.
@@ -258,7 +262,8 @@ The first advisory MCAL reference workflow is implemented and validated:
 - Add structured extraction for register tables, reset values, bit fields, electrical limits, and package/device applicability.
 - Add optional OCR and diagram/table handling for pages without reliable embedded text.
 - Add document revision and exact-device metadata, then detect conflicts between family-level manuals, S32K358 limits, and RTD releases.
-- Expand `mcal-hardware-pdf-extractor` beyond the initial MCU/FXOSC register field and frequency constraint.
+- Expand the target-platform profile with power rails, jumpers, termination population, protection
+	components, and schematic-derived MCU FXOSC evidence.
 - Add result-quality checks that compare extracted citations with rendered page content for critical recommendations.
 - Add authority-aware ranking and a larger fixed query-quality regression suite.
 - Add text-TOC fallback for RTD manuals without usable PDF outlines and richer parsing of wrapped enum, range, and constraint tables.
@@ -271,6 +276,10 @@ Update this section with the current date whenever work changes project capabili
 
 ### Milestone History
 
+- **2026-09-27:** Declared the `SW32K3_S32M27x_RTD_R23-11_7.0.1` release and Q289 revision C
+	reference platform; corrected Resource to S32K358 MAPBGA289; added a cited hardware-platform
+	subgraph for MCU, CAN0, LIN1, connectors, routes, and Ethernet TXCLK; activated it in both stores
+	and verified board-manual retrieval; retained physical-board and MCU-oscillator confirmation gates.
 - **2026-09-27:** Initialized Git on `main`; added repository rules that retain Tresos project
 	inputs while excluding licensed manuals, generated output, caches, local stores, credentials,
 	archives, and machine-specific IDE state; documented clone and regeneration workflow.

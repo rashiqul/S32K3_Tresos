@@ -51,9 +51,7 @@
               </d:ctr>
               <d:ctr name="ResourceGeneral" type="IDENTIFIABLE">
                 <d:var name="ResourceSubderivative" type="ENUMERATION" 
-                       value="s32k389_mapbga437">
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
-                </d:var>
+                       value="s32k358_mapbga289"/>
                 <d:var name="ARM_CoreArchitecture" type="ENUMERATION" 
                        value="ARM_M_ARCH">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>

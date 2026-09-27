@@ -3,7 +3,8 @@
   "documents": {
     "rtd_um": {"path": "docs/RTD_MCU_UM.pdf", "source_type": "RTD-user-manual"},
     "reference_manual": {"path": "docs/S32K3XXRM.pdf", "source_type": "reference-manual"},
-    "datasheet": {"path": "docs/S32K3xx_Datasheet.pdf", "source_type": "datasheet"}
+    "datasheet": {"path": "docs/S32K3xx_Datasheet.pdf", "source_type": "datasheet"},
+    "board_manual": {"path": "docs/S32K3X8EVB-Q289HWUM.pdf", "source_type": "board-manual"}
   },
   "citations": {
     "global_control": {"document": "rtd_um", "physical_page": 69, "page_label": "57", "section": "4.1.32 Parameter McuFxoscUnderMcuControl", "text_anchor": "MCU_FXOSC_UNDER_MCU_CONTROL", "required_terms": ["McuFxoscUnderMcuControl", "MCU_FXOSC_UNDER_MCU_CONTROL"]},
@@ -13,7 +14,14 @@
     "register_map": {"document": "reference_manual", "physical_page": 1146, "page_label": "1146", "section": "28.4 Memory map/register definition", "text_anchor": "FXOSC Control Register (CTRL)", "required_terms": ["FXOSC Control Register", "CTRL", "Offset", "0h"]},
     "oscon_field": {"document": "reference_manual", "physical_page": 1149, "page_label": "1149", "section": "28.6.2 FXOSC Control Register (CTRL)", "text_anchor": "OSCON Crystal oscillator power-down control", "required_terms": ["OSCON", "Crystal oscillator power-down control", "Enables or disables FXOSC"]},
     "crystal_limit": {"document": "datasheet", "physical_page": 99, "page_label": "99", "section": "11.4 FXOSC, Table 45", "text_anchor": "FXOSC_CLK output clock frequency in crystal mode: 8 to 40 MHz", "required_terms": ["FXOSC_CLK", "crystal mode", "8", "40", "MHz"]},
-    "s32k358_device": {"document": "datasheet", "physical_page": 101, "page_label": "101", "section": "11.4 FXOSC", "text_anchor": "S32K358", "required_terms": ["FXOSC", "S32K358"]}
+    "s32k358_device": {"document": "datasheet", "physical_page": 101, "page_label": "101", "section": "11.4 FXOSC", "text_anchor": "S32K358", "required_terms": ["FXOSC", "S32K358"]},
+    "board_identity": {"document": "board_manual", "physical_page": 5, "page_label": "5", "section": "5 S32K3X8EVB-Q289 - Default Configuration", "text_anchor": "P32K358GGT0VJBST", "required_terms": ["S32K358", "U80", "P32K358GGT0VJBST", "V1.01"]},
+    "board_revision": {"document": "board_manual", "physical_page": 42, "page_label": "42", "section": "20 Revision history", "text_anchor": "Schematic/Board Revision", "required_terms": ["S32K3X8EVB-Q289", "54870", "08/2023", "Revision"]},
+    "can_interface": {"document": "board_manual", "physical_page": 25, "page_label": "25", "section": "11 S32K3X8EVB-Q289 - CAN Interface", "text_anchor": "Using an NXP CAN transceiver the TJA1153", "required_terms": ["TJA1153", "J54", "CANH0", "CANL0", "GND"]},
+    "can_routes": {"document": "board_manual", "physical_page": 26, "page_label": "26", "section": "Table 17 CAN Interface - MCU Connections", "text_anchor": "CAN0_RX PTA6", "required_terms": ["CAN0_RX", "PTA6", "CAN0_TX", "PTA7", "CAN0_EN", "PTC21", "CAN0_STB", "PTC20"]},
+    "lin_interface": {"document": "board_manual", "physical_page": 23, "page_label": "23", "section": "10 S32K3X8EVB-Q289 - LIN Interface", "text_anchor": "TJA1021T/20/C", "required_terms": ["TJA1021T/20/C", "J675", "LIN1_OUT", "LIN2_OUT", "VBAT"]},
+    "lin_routes": {"document": "board_manual", "physical_page": 24, "page_label": "24", "section": "Table 15 LIN Interface - MCU Connections", "text_anchor": "LIN1_RX PTB9", "required_terms": ["LIN1_RX", "PTB9", "LPUART9_RX", "LIN1_TX", "PTB10", "LPUART9_TX"]},
+    "ethernet_txclk": {"document": "board_manual", "physical_page": 40, "page_label": "40", "section": "18.2 S32K3X8EVB-Q289 - TXCLK Crystal", "text_anchor": "an oscillator of 50 MHz was added", "required_terms": ["50 MHz", "TXCLK", "SABRE Connector", "RGMII"]}
   },
   "entities": {
     "fxosc": {"label": "Peripheral", "identity": ["S32K3XX", "FXOSC"], "properties": {"name": "FXOSC", "device_family": "S32K3XX"}},
@@ -22,7 +30,20 @@
     "frequency": {"label": "Constraint", "identity": ["S32K3XX", "FXOSC", "crystal-mode-frequency"], "properties": {"name": "FXOSC crystal-mode frequency", "minimum": 8000000, "maximum": 40000000, "unit": "Hz", "condition": "crystal-mode"}},
     "family": {"label": "Device", "identity": ["S32K3XX"], "properties": {"canonical_name": "S32K3XX", "scope": "family"}},
     "device": {"label": "Device", "identity": ["S32K358"], "properties": {"canonical_name": "S32K358", "scope": "derivative"}},
-    "symbol": {"label": "GeneratedSymbol", "identity": ["MCU_FXOSC_UNDER_MCU_CONTROL"], "properties": {"canonical_name": "MCU_FXOSC_UNDER_MCU_CONTROL"}}
+    "symbol": {"label": "GeneratedSymbol", "identity": ["MCU_FXOSC_UNDER_MCU_CONTROL"], "properties": {"canonical_name": "MCU_FXOSC_UNDER_MCU_CONTROL"}},
+    "target_platform": {"label": "HardwarePlatform", "identity": ["S32K3X8EVB-Q289", "54870", "C"], "properties": {"canonical_name": "S32K3X8EVB-Q289", "board_number": "54870", "documented_revision": "C", "project_id": "S32K358_EVB", "binding_status": "declared-reference-platform", "physical_board_confirmation": "required"}},
+    "mcu_u80": {"label": "HardwareComponent", "identity": ["S32K3X8EVB-Q289", "U80"], "properties": {"reference": "U80", "name": "S32K358 MCU", "package": "MAPBGA289", "marking": "P32K358GGT0VJBST", "board_version": "V1.01"}},
+    "can0_transceiver": {"label": "HardwareComponent", "identity": ["S32K3X8EVB-Q289", "CAN PHY0", "TJA1153"], "properties": {"name": "TJA1153 Secure HS-CAN transceiver", "interface": "CAN0"}},
+    "can0_connector": {"label": "Connector", "identity": ["S32K3X8EVB-Q289", "J54"], "properties": {"reference": "J54", "interface": "CAN0", "pins": {"1": "CANH0", "2": "CANL0", "3": "GND", "4": "NC"}}},
+    "can0_rx": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "CAN0_RX"], "properties": {"name": "CAN0_RX", "mcu_port": "PTA6"}},
+    "can0_tx": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "CAN0_TX"], "properties": {"name": "CAN0_TX", "mcu_port": "PTA7"}},
+    "can0_en": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "CAN0_EN"], "properties": {"name": "CAN0_EN", "mcu_port": "PTC21"}},
+    "can0_stb": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "CAN0_STB"], "properties": {"name": "CAN0_STB", "mcu_port": "PTC20"}},
+    "lin1_transceiver": {"label": "HardwareComponent", "identity": ["S32K3X8EVB-Q289", "LIN PHY1", "TJA1021T/20/C"], "properties": {"name": "TJA1021T/20/C LIN transceiver", "interface": "LIN1"}},
+    "lin_connector": {"label": "Connector", "identity": ["S32K3X8EVB-Q289", "J675"], "properties": {"reference": "J675", "interface": "LIN", "pins": {"1": "GND", "2": "GND", "5": "VBAT", "6": "VBAT", "7": "LIN2_OUT", "8": "LIN1_OUT"}}},
+    "lin1_rx": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "LIN1_RX"], "properties": {"name": "LIN1_RX", "mcu_port": "PTB9", "peripheral_signal": "LPUART9_RX"}},
+    "lin1_tx": {"label": "Signal", "identity": ["S32K3X8EVB-Q289", "LIN1_TX"], "properties": {"name": "LIN1_TX", "mcu_port": "PTB10", "peripheral_signal": "LPUART9_TX"}},
+    "ethernet_txclk_source": {"label": "ClockSource", "identity": ["S32K3X8EVB-Q289", "SABRE TXCLK", "50000000"], "properties": {"name": "SABRE TXCLK oscillator", "frequency": 50000000, "unit": "Hz", "purpose": "RGMII Ethernet", "is_mcu_fxosc": false}}
   },
   "relationships": [
     {"type": "BELONGS_TO", "from": "ctrl", "to": "fxosc"},
@@ -37,6 +58,20 @@
     {"subject": {"entity": "fxosc"}, "predicate": "CONSTRAINED_BY", "object": {"entity": "frequency"}, "citations": ["crystal_limit"], "assertion_status": "verified", "extraction_confidence": 1.0},
     {"subject": {"entity": "frequency"}, "predicate": "APPLIES_TO", "object": {"entity": "family"}, "citations": ["crystal_limit"], "assertion_status": "verified", "extraction_confidence": 1.0},
     {"subject": {"entity": "device"}, "predicate": "MEMBER_OF", "object": {"entity": "family"}, "citations": ["s32k358_device"], "assertion_status": "inferred", "extraction_confidence": 1.0, "rationale": "The datasheet names S32K358 in an FXOSC note, while the table is scoped to the S32K3xx datasheet family."},
-    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.71", "identifier": "McuCrystalFrequencyHz"}}, "predicate": "CONFIGURES", "object": {"entity": "fxosc"}, "citations": ["crystal_frequency", "crystal_limit"], "assertion_status": "inferred", "extraction_confidence": 0.9, "rationale": "The RTD parameter range matches the FXOSC crystal-mode range, but the parameter description does not name FXOSC."}
+    {"subject": {"definition": {"module": "Mcu", "section_number": "4.1.71", "identifier": "McuCrystalFrequencyHz"}}, "predicate": "CONFIGURES", "object": {"entity": "fxosc"}, "citations": ["crystal_frequency", "crystal_limit"], "assertion_status": "inferred", "extraction_confidence": 0.9, "rationale": "The RTD parameter range matches the FXOSC crystal-mode range, but the parameter description does not name FXOSC."},
+    {"subject": {"entity": "target_platform"}, "predicate": "DOCUMENTED_BY", "object": {"document": "board_manual"}, "citations": ["board_identity", "board_revision"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "POPULATES", "object": {"entity": "mcu_u80"}, "citations": ["board_identity"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "mcu_u80"}, "predicate": "IMPLEMENTS", "object": {"entity": "device"}, "citations": ["board_identity"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "POPULATES", "object": {"entity": "can0_transceiver"}, "citations": ["can_interface"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "EXPOSES", "object": {"entity": "can0_connector"}, "citations": ["can_interface"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "can0_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "can0_rx"}, "citations": ["can_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "can0_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "can0_tx"}, "citations": ["can_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "can0_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "can0_en"}, "citations": ["can_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "can0_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "can0_stb"}, "citations": ["can_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "POPULATES", "object": {"entity": "lin1_transceiver"}, "citations": ["lin_interface"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "EXPOSES", "object": {"entity": "lin_connector"}, "citations": ["lin_interface"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "lin1_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "lin1_rx"}, "citations": ["lin_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "lin1_transceiver"}, "predicate": "USES_SIGNAL", "object": {"entity": "lin1_tx"}, "citations": ["lin_routes"], "assertion_status": "verified", "extraction_confidence": 1.0},
+    {"subject": {"entity": "target_platform"}, "predicate": "POPULATES", "object": {"entity": "ethernet_txclk_source"}, "citations": ["ethernet_txclk"], "assertion_status": "verified", "extraction_confidence": 1.0}
   ]
 }
