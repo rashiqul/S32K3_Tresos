@@ -27,7 +27,54 @@
                 <a:a name="IMPORTER_INFO" value="@DEF"/>
               </d:var>
               <d:ctr name="DioConfig" type="IDENTIFIABLE">
-                <d:lst name="DioPort" type="MAP"/>
+                <d:lst name="DioPort" type="MAP">
+                  <d:ctr name="DIO_PORT_CH" type="IDENTIFIABLE">
+                    <d:var name="DioPortId" type="INTEGER" value="5"/>
+                    <d:lst name="DioChannel" type="MAP">
+                      <d:ctr name="DIO_CAN0_STB" type="IDENTIFIABLE">
+                        <d:var name="DioChannelId" type="INTEGER" value="4"/>
+                        <d:var name="PDACSlot" type="ENUMERATION" 
+                               value="VIRTUAL_WRAPPER_PDAC0">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:lst name="DioChannelEcucPartitionRef"/>
+                      </d:ctr>
+                      <d:ctr name="DIO_CAN0_EN" type="IDENTIFIABLE">
+                        <d:var name="DioChannelId" type="INTEGER" value="5"/>
+                        <d:var name="PDACSlot" type="ENUMERATION" 
+                               value="VIRTUAL_WRAPPER_PDAC0">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:lst name="DioChannelEcucPartitionRef"/>
+                      </d:ctr>
+                      <d:ctr name="DIO_CAN0_ERRN" type="IDENTIFIABLE">
+                        <d:var name="DioChannelId" type="INTEGER" value="7"/>
+                        <d:var name="PDACSlot" type="ENUMERATION" 
+                               value="VIRTUAL_WRAPPER_PDAC0">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:lst name="DioChannelEcucPartitionRef"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="DioChannelGroup" type="MAP"/>
+                    <d:lst name="DioPortEcucPartitionRef"/>
+                  </d:ctr>
+                  <d:ctr name="DIO_PORT_GH" type="IDENTIFIABLE">
+                    <d:var name="DioPortId" type="INTEGER" value="13"/>
+                    <d:lst name="DioChannel" type="MAP">
+                      <d:ctr name="DIO_PORT_GH" type="IDENTIFIABLE">
+                        <d:var name="DioChannelId" type="INTEGER" value="13"/>
+                        <d:var name="PDACSlot" type="ENUMERATION" 
+                               value="VIRTUAL_WRAPPER_PDAC0">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:lst name="DioChannelEcucPartitionRef"/>
+                      </d:ctr>
+                    </d:lst>
+                    <d:lst name="DioChannelGroup" type="MAP"/>
+                    <d:lst name="DioPortEcucPartitionRef"/>
+                  </d:ctr>
+                </d:lst>
               </d:ctr>
               <d:ctr name="DioGeneral" type="IDENTIFIABLE">
                 <d:var name="DioDevErrorDetect" type="BOOLEAN" value="false">
