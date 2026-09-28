@@ -60,8 +60,7 @@
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
                 <d:chc name="OsIfOperatingSystemType" type="IDENTIFIABLE" 
-                       value="OsIfAutosarOsType">
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                       value="OsIfFreeRtosType">
                   <d:ctr name="OsIfAutosarOsType" type="IDENTIFIABLE"/>
                   <d:ctr name="OsIfFreeRtosType" type="IDENTIFIABLE"/>
                   <d:ctr name="OsIfZephyrOsType" type="IDENTIFIABLE"/>

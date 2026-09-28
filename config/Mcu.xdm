@@ -2339,12 +2339,7 @@
                             </a:a>
                           </d:var>
                           <d:var name="McuPeripheralClockEnable" type="BOOLEAN" 
-                                 value="true">
-                            <a:a name="IMPORTER_INFO">
-                              <a:v>@DEF</a:v>
-                              <a:v>@CALC</a:v>
-                            </a:a>
-                          </d:var>
+                                 value="false"/>
                         </d:ctr>
                         <d:ctr name="McuPeripheral_12" type="IDENTIFIABLE">
                           <d:var name="McuPeripheralName" type="ENUMERATION" 

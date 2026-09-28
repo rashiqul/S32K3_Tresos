@@ -124,8 +124,8 @@
           <a:a name="IMPORTER_INFO" value="@DEF"/>
         </d:var>
         <d:var name="ModuleId" value="Gpt_TS_T40D34M70I1R0"/>
-        <d:var name="Enabled" value="TRUE"/>
-        <d:var name="Generate" value="TRUE"/>
+        <d:var name="Enabled" value="FALSE"/>
+        <d:var name="Generate" value="FALSE"/>
         <d:var name="LoadExistingConfigurationFile" value="FALSE"/>
         <d:var name="SoftwareVersion" value="7.0.1 D2602"/>
       </d:ctr>
