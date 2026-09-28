@@ -732,7 +732,7 @@
                     </d:ctr>
                     <d:ctr name="McuCgm0SettingConfig" type="IDENTIFIABLE">
                       <d:lst name="McuCgm0PcfsConfig" type="MAP">
-                        <d:ctr name="PCFS_PLL_PHI0" type="IDENTIFIABLE">
+                        <d:ctr name="McuCgm0PcfsConfig_0" type="IDENTIFIABLE">
                           <d:var name="McuClockPcfsUnderMcuControl" 
                                  type="BOOLEAN" value="true"/>
                           <d:var name="McuPCFS_Name" type="ENUMERATION" 
