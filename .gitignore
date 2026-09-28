@@ -10,8 +10,12 @@ __pycache__/
 coverage.xml
 htmlcov/
 
-# Generated Tresos and build output
-output/
+# Generated Tresos code is versioned; EPC metadata remains local
+output/*
+!output/include/
+!output/include/**
+!output/src/
+!output/src/**
 Debug/
 Release/
 build/
