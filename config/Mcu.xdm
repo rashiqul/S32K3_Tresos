@@ -995,18 +995,16 @@
                           </a:a>
                         </d:var>
                         <d:var name="McuClkMux3Div0_En" type="BOOLEAN" 
-                               value="false">
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:var>
+                               value="true"/>
                         <d:var name="McuClkMux3Div0_Divisor" type="INTEGER" 
                                value="0">
                           <a:a name="IMPORTER_INFO" value="@DEF"/>
                         </d:var>
                         <d:var name="McuClockMux3Divider0_Frequency" 
-                               type="FLOAT" value="0.0">
+                               type="FLOAT" value="4.8E7">
                           <a:a name="IMPORTER_INFO">
-                            <a:v>@DEF</a:v>
                             <a:v>@CALC</a:v>
+                            <a:v>@DEF</a:v>
                           </a:a>
                         </d:var>
                       </d:ctr>
@@ -1826,6 +1824,12 @@
                                type="ENUMERATION" value="CORE_CLK">
                           <a:a name="IMPORTER_INFO" value="@DEF"/>
                         </d:var>
+                      </d:ctr>
+                      <d:ctr name="CAN_PE_CLK_48MHZ" type="IDENTIFIABLE">
+                        <d:var name="McuClockReferencePointFrequency" 
+                               type="FLOAT" value="4.8E7"/>
+                        <d:var name="McuClockFrequencySelect" 
+                               type="ENUMERATION" value="FLEXCAN_PE_CLK0_2"/>
                       </d:ctr>
                     </d:lst>
                   </d:ctr>
@@ -3129,12 +3133,7 @@
                             </a:a>
                           </d:var>
                           <d:var name="McuPeripheralClockEnable" type="BOOLEAN" 
-                                 value="false">
-                            <a:a name="IMPORTER_INFO">
-                              <a:v>@DEF</a:v>
-                              <a:v>@CALC</a:v>
-                            </a:a>
-                          </d:var>
+                                 value="true"/>
                         </d:ctr>
                         <d:ctr name="McuPeripheral_47" type="IDENTIFIABLE">
                           <d:var name="McuPeripheralName" type="ENUMERATION" 
