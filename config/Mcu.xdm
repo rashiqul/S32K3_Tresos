@@ -1831,6 +1831,17 @@
                         <d:var name="McuClockFrequencySelect" 
                                type="ENUMERATION" value="FLEXCAN_PE_CLK0_2"/>
                       </d:ctr>
+                      <d:ctr name="LIN_LPUART9_CLK_50MHZ" type="IDENTIFIABLE">
+                        <d:var name="McuClockReferencePointFrequency" 
+                               type="FLOAT" value="5.0E7">
+                          <a:a name="IMPORTER_INFO">
+                            <a:v>@CALC</a:v>
+                            <a:v>@DEF</a:v>
+                          </a:a>
+                        </d:var>
+                        <d:var name="McuClockFrequencySelect" 
+                               type="ENUMERATION" value="AIPS_SLOW_CLK"/>
+                      </d:ctr>
                     </d:lst>
                   </d:ctr>
                 </d:lst>
@@ -4393,12 +4404,7 @@
                             </a:a>
                           </d:var>
                           <d:var name="McuPeripheralClockEnable" type="BOOLEAN" 
-                                 value="false">
-                            <a:a name="IMPORTER_INFO">
-                              <a:v>@DEF</a:v>
-                              <a:v>@CALC</a:v>
-                            </a:a>
-                          </d:var>
+                                 value="true"/>
                         </d:ctr>
                         <d:ctr name="McuPeripheral_102" type="IDENTIFIABLE">
                           <d:var name="McuPeripheralName" type="ENUMERATION" 

@@ -83,7 +83,31 @@
                 </d:ctr>
                 <d:lst name="IntmChannel" type="MAP"/>
               </d:ctr>
-              <d:lst name="IntCtrlConfig" type="MAP"/>
+              <d:lst name="IntCtrlConfig" type="MAP">
+                <d:ctr name="IntCtrlConfig_0" type="IDENTIFIABLE">
+                  <d:lst name="PlatformIsrConfig" type="MAP">
+                    <d:ctr name="LIN1_LPUART9_ISR" type="IDENTIFIABLE">
+                      <d:var name="IsrName" type="ENUMERATION" 
+                             value="LPUART9_IRQn"/>
+                      <d:var name="IsrEnabled" type="BOOLEAN" value="true"/>
+                      <d:var name="IsrPriority" type="INTEGER" value="5"/>
+                      <d:var name="IsrHandler" type="FUNCTION-NAME" 
+                             value="LPUART9_LIN_IP_RxTx_IRQHandler"/>
+                    </d:ctr>
+                  </d:lst>
+                  <d:ref name="PlatformNvicEcucPartitionRef" type="REFERENCE" >
+                    <a:a name="ENABLE" value="false"/>
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:ref>
+                  <d:var name="PlatformVtorAddressConfig" type="INTEGER" 
+                         value="0">
+                    <a:a name="IMPORTER_INFO">
+                      <a:v>@DEF</a:v>
+                      <a:v>@CALC</a:v>
+                    </a:a>
+                  </d:var>
+                </d:ctr>
+              </d:lst>
               <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
                 <d:var name="ArReleaseMajorVersion" type="INTEGER" value="4">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>

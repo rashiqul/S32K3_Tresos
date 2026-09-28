@@ -28,7 +28,70 @@
                 <a:a name="IMPORTER_INFO" value="@DEF"/>
               </d:var>
               <d:ctr name="LinGlobalConfig" type="IDENTIFIABLE">
-                <d:lst name="LinChannel" type="MAP"/>
+                <d:lst name="LinChannel" type="MAP">
+                  <d:ctr name="LIN1_LPUART9" type="IDENTIFIABLE">
+                    <d:var name="LinChannelId" type="INTEGER" value="0">
+                      <a:a name="IMPORTER_INFO">
+                        <a:v>@DEF</a:v>
+                        <a:v>@CALC</a:v>
+                      </a:a>
+                    </d:var>
+                    <d:var name="LinNodeType" type="ENUMERATION" value="MASTER">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="LinChannelBaudRate" type="INTEGER" 
+                           value="19200"/>
+                    <d:var name="BreakLength" type="ENUMERATION" value="BL_13">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="DetectedBreakLength" type="ENUMERATION" 
+                           value="BL_11">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="LinResponseTimeout" type="INTEGER" value="14">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="LinHeaderTimeout" type="INTEGER" value="44">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="LinHwChannel" type="ENUMERATION" 
+                           value="LPUART_IP_9"/>
+                    <d:ref name="LinClockRef" type="REFERENCE" 
+                           value="ASPath:/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_200MHz/LIN_LPUART9_CLK_50MHZ"/>
+                    <d:ref name="LinClockRef_Alternate" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:var name="LinChannelWakeupSupport" type="BOOLEAN" 
+                           value="false">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:ref name="LinChannelEcuMWakeupSource" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:ref name="LinChannelEcucPartitionRef" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:var name="LinInteruptDmaMethod" type="ENUMERATION" 
+                           value="LIN_IP_USING_INTERRUPTS">
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:ref name="LinDmaRxChannelRef" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:ref name="LinFlexioRxControllerRef" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                    <d:ref name="LinFlexioTxControllerRef" type="REFERENCE" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:ref>
+                  </d:ctr>
+                </d:lst>
               </d:ctr>
               <d:ctr name="LinGeneral" type="IDENTIFIABLE">
                 <d:var name="LinMultiPartitionSupport" type="BOOLEAN" 
