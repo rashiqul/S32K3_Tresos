@@ -23,7 +23,30 @@
                      value="VariantPostBuild">
                 <a:a name="IMPORTER_INFO" value="@DEF"/>
               </d:var>
-              <d:lst name="EcucHardware" type="MAP"/>
+              <d:lst name="EcucHardware" type="MAP">
+                <d:ctr name="EcucHardware_0" type="IDENTIFIABLE">
+                  <d:lst name="EcucCoreDefinition" type="MAP">
+                    <d:ctr name="EcucCoreDefinition_0" type="IDENTIFIABLE">
+                      <d:var name="EcucCoreId" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:lst name="EcucCoreHwRef"/>
+                    </d:ctr>
+                    <d:ctr name="EcucCoreDefinition_1" type="IDENTIFIABLE">
+                      <d:var name="EcucCoreId" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:lst name="EcucCoreHwRef"/>
+                    </d:ctr>
+                  </d:lst>
+                </d:ctr>
+              </d:lst>
               <d:lst name="EcucPartitionCollection" type="MAP"/>
               <d:lst name="EcucConfigSet" type="MAP"/>
               <d:ctr name="EcucSelectedLoadableVariant" type="IDENTIFIABLE">
